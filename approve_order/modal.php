@@ -8,8 +8,7 @@
         </button>
       </div>
       <div class="modal-body">
-          <textarea rows="3" class="form-control"></textarea>
-       
+          <textarea rows="3" class="form-control" id="reject"></textarea> 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 

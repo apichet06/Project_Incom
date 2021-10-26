@@ -32,6 +32,7 @@ $reset  = "<i class=\"fas fa-eraser\"></i> เคลียร์";
 $approve  = "<i class=\"far fa-thumbs-up\"> อนุมัติ</i>";
 $reject = "<i class=\"fas fa-file-signature\"> ไม่อนุมัติ</i>";
 
+
 $success_insert = "บันทึกข้อมูลสำเร็จ";
 $success_update = "แก้ไขข้อมูลสำเร็จ";
 $success_delete = "ลบข้อมูลสำเร็จ";

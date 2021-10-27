@@ -31,7 +31,7 @@ $order  = "<i class=\"fas fa-file-alt\"></i> ใบจัดทำงานใ�
 $reset  = "<i class=\"fas fa-eraser\"></i> เคลียร์";
 $approve  = "<i class=\"far fa-thumbs-up\"> อนุมัติ</i>";
 $reject = "<i class=\"fas fa-file-signature\"> ไม่อนุมัติ</i>";
-
+$uturn  = "<i class=\"fas fa-reply-all fa-2x\"></i>";
 
 $success_insert = "บันทึกข้อมูลสำเร็จ";
 $success_update = "แก้ไขข้อมูลสำเร็จ";

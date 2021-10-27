@@ -49,13 +49,17 @@
                         <div class="col-md-12">
                             <div class="card card-outline card-info">
                                 <div class="card-header">
-                                    <h3 class="card-title">
-                                        <i class="fas fa-file-alt mr-1"></i>
-                                        สร้างใบงานใหม่
-                                    </h3>
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <h3 class="card-title">
+                                        <i class="fas fa-file-alt mr-1"></i> สร้างใบงานใหม่</h3>
+                                    </div>
+                                        <div class="col-2 text-right"><a href="index.php"><?=$uturn?></a></div>
+                                    </div>
+                                     
                                 </div>
                                 <div class="card-body">
-                                    <form action="" id="insert_update">
+                                    <form action="" id="approve">
                                         <div class="row align-items-center">
                                             <div class="col-md-10 "></div>
                                             <div class="col-md-2">
@@ -85,6 +89,7 @@
                                                     <label class="col-3 col-form-label">เลขที่</label>
                                                     <div class="col-9">
                                                         <input type="text" class="form-control form-control-sm" id="n_number" name="n_number" placeholder="เลขที่" value="<?=$rs['n_number']?>" disabled>
+                                                        <input type="hidden" class="form-control form-control-sm" name="n_id" placeholder="เลขที่" value="<?=$rs['n_id']?>" >  
                                                     </div>
                                                 </div>
                                             </div>
@@ -582,10 +587,10 @@
                                             <div class="col-md-2 mb-1">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="n_thickness" id="n_thickness6" value="Spzกำหนด" <?=$rs['n_thickness']=="Spzกำหนด"? "checked":""?>>
-                                                    <label class="form-check-label  col-md-7">
+                                                    <label class="form-check-label col-md-7">
                                                         Spz กำหนด
                                                     </label>
-                                                    <input type="text" value="<?=$rs['n_thickness_other']?>" class="form-control form-control-sm  col-11" name="n_thickness_other" id="n_thickness_other" placeholder="...">
+                                                    <input type="text" value="<?=$rs['n_thickness_other']?>" class="form-control form-control-sm col-md-7" name="n_thickness_other" id="n_thickness_other" placeholder="...">
                                                 </div>
                                             </div>
                                             <!-- ปิด -->
@@ -856,10 +861,12 @@
                                                     <button type="submit" class="btn btn-sm btn-info"><?=$approve?></button>
                                                 </div>
                                             </div>
-                                            <div class="col-md-1">
-
+                                            <div class="col-md-1"> 
                                                 <div class="row mb-1">
-                                                    <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#reject"><?=$reject?></button>
+                                                    <button type="button" class="btn btn-sm btn-secondary reject"
+                                                     data-n_id= "<?=$rs['n_id'];?>" 
+                                                     data-toggle="modal"
+                                                     data-target="#reject" ><?=$reject?></button>
                                                 </div>
                                             </div>
                                         </div>

@@ -8,12 +8,15 @@
         </button>
       </div>
       <div class="modal-body">
-          <textarea rows="3" class="form-control" id="reject"></textarea> 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
-        <button type="button" class="btn btn-info"><?=$save?></button>  
-      </div>
+          <form id="form_reject" > 
+            <textarea rows="5" class="form-control" name="n_reject" required></textarea> 
+            <input type="hidden" name="n_id" class="form-control" id="n_id">
+            <div class="modal-footer">
+                 <button type="submit" class="btn btn-info"><?=$save?></button>         
+                 <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=$close?></button>     
+            </div>
+            </form>
+      </div> 
     </div>
   </div>
 </div>

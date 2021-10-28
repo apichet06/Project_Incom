@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once('connect_db.php');
+    require_once('conndb/conn.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

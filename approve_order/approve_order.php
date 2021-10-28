@@ -17,7 +17,7 @@
                 <div class="container-fluid">
                     <div class="row mb-0">
                         <div class="col-sm-6">
-                            <h1 class="">สร้างใบงานใหม่</h1>
+                            <h1 class="">ใบงานใหม่รออนุมัติ</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -52,7 +52,7 @@
                                     <div class="row">
                                         <div class="col-10">
                                             <h3 class="card-title">
-                                        <i class="fas fa-file-alt mr-1"></i> สร้างใบงานใหม่</h3>
+                                        <i class="fas fa-file-alt mr-1"></i>ใบงานใหม่รออนุมัติ</h3>
                                     </div>
                                         <div class="col-2 text-right"><a href="index.php"><?=$uturn?></a></div>
                                     </div>

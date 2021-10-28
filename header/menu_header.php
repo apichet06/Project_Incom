@@ -111,6 +111,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="../list_orders/index.php" class="nav-link">
+                        <i class="nav-icon far fa-plus-square"></i>
+                        <p>
+                            รายการใบงาน
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="../approve_order/index.php" class="nav-link">
                         <i class="nav-icon far fa-plus-square"></i>
                         <p>

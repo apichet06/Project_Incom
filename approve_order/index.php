@@ -64,7 +64,9 @@
                                             $i = 1;
                                             $sql = mysqli_query($conn, "SELECT * FROM new_order a 
                                             inner join customer b 
-                                            on a.c_id = b.c_id 
+                                            on a.c_id = b.c_id
+                                            inner join part c 
+                                            on a.pa_id = c.pa_id
                                             Where a.n_flac_status = 'Y' and a.n_reject ='' and a.n_user_approve ='0'
                                             order by a.n_id desc");
                                             while ($rs = mysqli_fetch_array($sql)) {
@@ -75,7 +77,7 @@
                                                     <td><?= $rs['n_customerStatus']; ?></td>
                                                     <td><?= $rs['customer_id']; ?></td>
                                                     <td><?= $rs['customer_name']; ?></td>
-                                                    <td><?= $rs['pa_id']; ?></td>
+                                                    <td><?= $rs['pa_no']; ?></td>
                                                     <td><?= $rs['n_desired']; ?></td>
                                                     <td class="text-center"><a href="approve_order.php?n_id=<?=$rs['n_id']?>">คลิก</a></td>
                                                 </tr>

@@ -3,9 +3,7 @@
 
 <head>
     <?php include '../header/css.php' ?>
-    
-    
-
+     
 </head>
 
 <body class="hold-transition  accent-darksidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed text-sm">

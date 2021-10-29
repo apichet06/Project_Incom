@@ -52,7 +52,7 @@
                                 <nav>
                                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                         <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">รออนุมัติ</a>
-                                        <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">อนุมัติ</a>
+                                        <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">ผ่านอนุมัติ</a>
                                         <a class="nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">ไม่อนุมัติ</a>
                                     </div>
                                     </nav>
@@ -91,7 +91,7 @@
                                                     <td><?= $rs['customer_name']; ?></td>
                                                     <td><?= $rs['pa_no']; ?></td>
                                                     <td><?= $rs['n_desired']; ?></td>
-                                                    <td class="text-center"><strong class="text-success">รออนุมัติ</strong></td>
+                                                    <td class="text-center"><strong class="text-info">รออนุมัติ</strong></td>
                                                 </tr>
                                             <?php } ?>
                                         </tbody>
@@ -108,7 +108,7 @@
                                                 <th>ชื่อลูกค้า</th>
                                                 <th>PART NO.</th>
                                                 <th>วันที่ต้องการ</th>
-                                                <th class="text-center">ตรวจสอบอนุมัติ</th>
+                                                <th class="text-center">สถานะ</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -131,7 +131,7 @@
                                                     <td><?= $rs['customer_name']; ?></td>
                                                     <td><?= $rs['pa_no']; ?></td>
                                                     <td><?= $rs['n_desired']; ?></td>
-                                                    <td class="text-center"><a href="approve_order.php?n_id=<?=$rs['n_id']?>">คลิก</a></td>
+                                                    <td class="text-center"><strong class="text-success">ผ่านอนุมัติ</strong></td>
                                                 </tr>
                                             <?php } ?>
                                         </tbody>
@@ -148,7 +148,10 @@
                                                 <th>ชื่อลูกค้า</th>
                                                 <th>PART NO.</th>
                                                 <th>วันที่ต้องการ</th>
-                                                <th class="text-center">ตรวจสอบอนุมัติ</th>
+                                                <th>ข้อความ Reject</th>
+                                                <th>วันที่ Reject</th>
+                                                <th class="text-center">สถานะ</th>
+                                                <th class="text-center">ส่งงานใหม่</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -159,7 +162,7 @@
                                             on a.c_id = b.c_id
                                             inner join part c 
                                             on a.pa_id = c.pa_id
-                                            Where a.n_flac_status = 'Y' and a.n_reject ='' and a.n_user_approve ='0'
+                                            Where a.n_flac_status = 'Y' and a.n_reject !='' and a.n_user_approve ='0'
                                             order by a.n_id desc");
                                             while ($rs = mysqli_fetch_array($sql)) {
                                             ?>
@@ -171,6 +174,9 @@
                                                     <td><?= $rs['customer_name']; ?></td>
                                                     <td><?= $rs['pa_no']; ?></td>
                                                     <td><?= $rs['n_desired']; ?></td>
+                                                    <td><?= $rs['n_reject']; ?></td>
+                                                    <td><?= $rs['n_reject_date']; ?></td>
+                                                    <td class="text-center"><strong class="text-danger">ไม่อนุมัติ</strong></td>
                                                     <td class="text-center"><a href="approve_order.php?n_id=<?=$rs['n_id']?>">คลิก</a></td>
                                                 </tr>
                                             <?php } ?>

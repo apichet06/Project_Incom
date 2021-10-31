@@ -40,7 +40,7 @@
                             <div class="card card-outline card-info">
                                 <div class="card-header">
                                     <h3 class="card-title">
-                                        <i class="fas fa-drum-steelpan mr-1"></i>
+                                        <i class="fas fa-file-alt mr-1"></i>
                                         รายการรออนุมัติ
                                     </h3>
 
@@ -79,7 +79,7 @@
                                                     <td><?= $rs['customer_name']; ?></td>
                                                     <td><?= $rs['pa_no']; ?></td>
                                                     <td><?= $rs['n_desired']; ?></td>
-                                                    <td class="text-center"><a href="approve_order.php?n_id=<?=$rs['n_id']?>">คลิก</a></td>
+                                                    <td class="text-center"><a href="approve_order.php?n_id=<?= $rs['n_id'] ?>">คลิก</a></td>
                                                 </tr>
                                             <?php } ?>
                                         </tbody>

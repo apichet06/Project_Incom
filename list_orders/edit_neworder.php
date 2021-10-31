@@ -17,7 +17,7 @@
                 <div class="container-fluid">
                     <div class="row mb-0">
                         <div class="col-sm-6">
-                            <h1 class="">ใบงานใหม่รออนุมัติ</h1>
+                            <h1 class="">ใบงานรอแก้ไข</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -52,15 +52,16 @@
                                     <div class="row">
                                         <div class="col-10">
                                             <h3 class="card-title">
-                                        <i class="fas fa-file-alt mr-1"></i>ใบงานใหม่รออนุมัติ</h3>
+                                        <i class="fas fa-file-alt mr-1"></i> ใบงานรอแก้ไขเพื่อส่งอนุมัติ <strong class="text-danger">(ใบงานถูก Reject)</strong></h3>
                                     </div>
                                         <div class="col-2 text-right"><a href="index.php"><?=$uturn?></a></div>
                                     </div>
                                      
                                 </div>
                                 <div class="card-body">
-                                    <form action="" id="approve">
+                                    <form action="" id="edit_neworder">
                                         <div class="row align-items-center">
+                                            <div class="col-md-12"><strong class="text-danger">Remak** (เหตุผล Reject) : <?=$rs['n_reject']?></strong><hr></div>
                                             <div class="col-md-10 "></div>
                                             <div class="col-md-2">
                                                 <div class="form-check">
@@ -858,17 +859,9 @@
 
                                             <div class="col-md-1">
                                                 <div class="row mb-1">
-                                                    <button type="submit" class="btn btn-sm btn-info"><?=$approve?></button>
+                                                    <button type="submit" class="btn btn-sm btn-info"><?=$save?></button>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-1"> 
-                                                <div class="row mb-1">
-                                                    <button type="button" class="btn btn-sm btn-secondary reject"
-                                                     data-n_id= "<?=$rs['n_id'];?>" 
-                                                     data-toggle="modal"
-                                                     data-target="#reject" ><?=$reject?></button>
-                                                </div>
-                                            </div>
+                                            </div> 
                                         </div>
 
                                     </form>
@@ -888,13 +881,14 @@
             <!-- Control sidebar content goes here -->
         </aside>
 
-        <?php 
-        require_once 'modal.php';
+        <?php
+        // require_once 'modal.php';
+     
         require_once '../footer/footer.html'; ?>
     </div>
     <?php require_once '../header/js.php' ?>
 
-    <script src="js.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

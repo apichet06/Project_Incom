@@ -65,7 +65,7 @@
                                                 <th>ตำแหน่ง</th>
                                                 <th>วันที่</th>
                                                 <th>ฝ่าย/แผนก</th>
-                                                <th>แก้ไข</th>
+                                                <th class="text-center">แก้ไข</th>
                                             </tr>
                                         </thead>
                                         <tbody> 
@@ -86,7 +86,7 @@
                                                 <td><?=$rows['p_name'];?></td>
                                                 <td><?=$rows['d_name'];?></td>
                                                 <td><?=$rows['u_date'];?></td>
-                                                <td>
+                                                <td class="text-center">
                                                     <a href="#" type="button" class="edit btn btn-warning btn-sm"
                                                         id="<?=$rows['u_id']?>" data-toggle="modal" 
                                                         data-target="#add_edit"

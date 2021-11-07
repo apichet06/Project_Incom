@@ -69,7 +69,7 @@
                                                 <th>pa_thickness</th>
                                                 <th>pa_img</th>
                                                 <th>pa_date</th>
-                                                <th>แก้ไข</th>
+                                                <th class="text-center">แก้ไข</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -89,7 +89,7 @@
                                                             src="image/<?=$rows['pa_img'];?>" hidden> <u>รูป Part</u></a>
                                                 </td>
                                                 <td> <?=$rows['pa_date'];?></td>
-                                                <td>
+                                                <td class="text-center">
                                                     <a href="#" type="button" class="edit btn btn-warning btn-sm"
                                                         id="<?=$rows['u_id']?>" data-toggle="modal"
                                                         data-target="#add_edit" data-pa_id="<?=$rows['pa_id'];?>"

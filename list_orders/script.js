@@ -1,5 +1,15 @@
 $(".data").DataTable();
 
+
+$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+  localStorage.setItem('activeTab', $(e.target).attr('href'));
+});
+var activeTab = localStorage.getItem('activeTab');
+if (activeTab) {
+  $('a[href="' + activeTab + '"]').tab('show');
+}
+ 
+
 $(document).ready(function () {
   $(document).find("input:checked[type='radio']").addClass("bounce");
   $("input[type='radio']").click(function () {

@@ -103,28 +103,43 @@
                 </li>
                 <?php } if($d_ssion == 8 ){ ?>  
                 <li class="nav-item">
-                    <a href="../new_order/index.php" class="nav-link">
-                        <i class="nav-icon far fa-plus-square"></i>
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon far fa-building"></i>
                         <p>
                             1.ใบจัดทำงานใหม่
+                            <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a href="../list_orders/index.php" class="nav-link">
-                        <i class="nav-icon far fa-plus-square"></i>
-                        <p>
-                            รายการใบงาน
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="../approve_order/index.php" class="nav-link">
-                        <i class="nav-icon far fa-plus-square"></i>
-                        <p>
-                            รายการรออนุมัติ
-                        </p>
-                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="../new_order/index.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>สร้างงานใหม่</p>
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a href="../new_order/all_order.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>แสดงรายการทั้งหมด</p>
+                            </a>
+                        </li> -->
+                        <li class="nav-item">
+                            <a href="../list_orders/index.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                รายการใบงานทั้งหมด
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../approve_order/index.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    รายการรออนุมัติ
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <?php } if($d_ssion == 8 || $d_ssion == 3){ ?> 
@@ -246,7 +261,7 @@
                  <?php } } ?>
 
                 <li class="nav-item">
-                    <a href="" id="log_out"  target="_new" class="nav-link">
+                    <a href="#" id="log_out" target="_new" class="nav-link">
                         <i class="nav-icon fas fa-sign-out-alt text-danger"></i>
                         <p class="text-danger">
                             ออกจากระบบ

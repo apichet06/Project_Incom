@@ -17,7 +17,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">รายการใบงาน</h1>
+                            <h1 class="m-0">รายการใบงานทั้งหมด</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -41,7 +41,7 @@
                                 <div class="card-header">
                                     <h3 class="card-title">
                                         <i class="far fa-file-alt mr-1"></i>
-                                        รายการใบงาน
+                                        รายการใบงานทั้งหมด
                                     </h3>
                                 </div>
                                 <div class="card-body">
@@ -107,6 +107,7 @@
                                                         <th>PART NO.</th>
                                                         <th>วันที่ต้องการ</th>
                                                         <th class="text-center">สถานะ</th>
+                                                        <th class="text-center">พิมพ์เอกสาร</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -130,6 +131,7 @@
                                                             <td><?= $rs['pa_no']; ?></td>
                                                             <td><?= $rs['n_desired']; ?></td>
                                                             <td class="text-center"><strong class="text-success">ผ่านอนุมัติ</strong></td>
+                                                            <td class="text-center"><a href="./new_order_print.php?n_number=<?= $rs['n_number'] ?>" target="_black">พิมพ์&nbsp;<i class="fas fa-print"></i></a></td>
                                                         </tr>
                                                     <?php } ?>
                                                 </tbody>
@@ -206,6 +208,7 @@
     <?php require_once '../header/js.php' ?>
 
     <script src="script.js"></script>
+    
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once '../conndb/conn.php';
+    include '../conndb/conn.php';
     $n_number = @$_GET['n_number'];
     $sql01 = "SELECT * FROM new_order WHERE n_number = '$n_number'";
     $rs01 = mysqli_query($conn,$sql01);
@@ -12,7 +12,11 @@
 
     $sql03 = "SELECT * FROM part WHERE pa_id = '".$rows01['pa_id']."' ";
     $rs03 = mysqli_query($conn,$sql03);
-    $rows03=mysqli_fetch_array($rs03)
+    $rows03=mysqli_fetch_array($rs03);
+
+    $date = date("d-m-Y");
+    date_default_timezone_set('asia/bangkok');
+    $time = date("H:i:s");
 
 ?>
 <!DOCTYPE html>
@@ -86,7 +90,7 @@
         }
     </style>
 </head>
-<body style="font-family:angsana;font-size:13px;" onload="window.print(); window.onafterprint = window.close();">
+<body style="font-family:angsana;font-size:13px;" onload="window.onafterprint = function() {  window.close();}; window.print();">
     <div class="book">
         <!-- Page 1 -->
         <div class="page">
@@ -113,7 +117,7 @@
                             <?php } ?>
                         </td>
                     </tr>
-                    <table width="100%" border="" cellpadding="5px">
+                    <table width="100%" border="0" cellpadding="5px">
                         <tr>
                             <td width="10%" colspan="3" align="left" style="border-left:1px solid;">&nbsp;วันที่จัดทำ</td>
                             <td width="15%" colspan="3" align="left" style="border-bottom:1px dotted;">&emsp;<?=$rows01['n_datejob']?></td>
@@ -121,16 +125,16 @@
                             <td width="15%" colspan="3" align="left" style="border-bottom:1px dotted;">&emsp;<?=$rows01['n_number']?></td>
                             <td width="15%" colspan="3" align="center" style="border-bottom:1px solid;">
                                 <?php if($rows01['n_specstatus']=='ชั่วคราว'){ ?>
-                                    &nbsp;<font size="+2">☑</font>&nbsp;SPEC ชั่วคราว</td>
+                                    &nbsp;<font size="+2">☑</font>&nbsp;เปลี่ยน SPEC ชั่วคราว</td>
                                 <?php }else{ ?>
-                                    &nbsp;<font size="+2">▢</font>&nbsp;SPEC ชั่วคราว</td>
+                                    &nbsp;<font size="+2">▢</font>&nbsp;เปลี่ยน SPEC ชั่วคราว</td>
                                 <?php } ?>
                             </td>
                             <td width="15%" colspan="3" align="center" style="border-right:1px solid;border-bottom:1px solid;">
                                 <?php if($rows01['n_specstatus']=='ถาวร'){ ?>
-                                    &nbsp;<font size="+2">☑</font>&nbsp;SPEC ถาวร</td>
+                                    &nbsp;<font size="+2">☑</font>&nbsp;เปลี่ยน SPEC ถาวร</td>
                                 <?php }else{ ?>
-                                    &nbsp;<font size="+2">▢</font>&nbsp;SPEC ถาวร</td>
+                                    &nbsp;<font size="+2">▢</font>&nbsp;เปลี่ยน SPEC ถาวร</td>
                                 <?php } ?>
                             </td>
                         </tr>
@@ -139,7 +143,7 @@
                             <td colspan="3" align="left" style="border-bottom:1px dotted;">&emsp;<?=$rows02['customer_name']?></td>
                             <td colspan="3" align="center" >&nbsp;รหัสลูกค้า</td>
                             <td colspan="3" align="left" style="border-bottom:1px dotted;border-right:1px solid;">&emsp;<?=$rows01['customer_id']?></td>
-                            <td colspan="6" rowspan="7" style="border-right:1px solid; border-bottom:1px solid;"><img src="../part/image/<?=$rows03['pa_img']?>" width="175"></td>
+                            <td colspan="6" rowspan="7" style="border-right:1px solid; border-bottom:1px solid;"><img src="../part/image/<?=$rows03['pa_img']?>" width="250"></td>
                         </tr>
                         <!-- <tr>
                             <td colspan="3" align="left" style="border-left:1px solid;">&nbsp;ชื่อลูกค้า</td>
@@ -180,45 +184,35 @@
                         </tr>
                         <tr>
                             <td colspan="3" align="left" style="border-left:1px solid;">&nbsp;Line ผลิต</td>
-                            <td align="left">
-                                <?php if($rows01['n_line']=='กลึง'){ ?>
-                                    <font size="+1">☑</font> กลึง
+                            <td colspan="4" align="left">
+                                <?php if($rows01['n_line']=='ALZ'){ ?>
+                                    <font size="+1">☑</font> ALZ
                                 <?php }else{ ?>
-                                    <font size="+1">☐</font> กลึง
+                                    <font size="+1">☐</font> ALZ
                                 <?php }?>
-                                <td style="border-bottom:1px dotted;">
-                                    <?php if($rows01['n_line']=='กลึง'){ ?>
-                                        <?=$rows01['n_lathe']?>
-                                </td>
-                                    <?php }?>
-                            </td>
-                            <td>
-                                <?php if($rows01['n_line']=='RA'){ ?>
-                                    <font size="+1">☑</font> RA
-                                <?php }else{ ?>
-                                    <font size="+1">☐</font> RA
-                                <?php }?>
-                            </td>
-                            <td colspan="2">
-                                <?php if($rows01['n_line']=='Znfe'){ ?>
+                                &nbsp;
+                                
+                                <?php if($rows01['n_line']=='ZnFe'){ ?>
                                     <font size="+1">☑</font> Znfe
                                 <?php }else{ ?>
                                     <font size="+1">☐</font> Znfe
                                 <?php }?>
-                                <td colspan="2" style="border-bottom:1px dotted;">
-                                    <?php if($rows01['n_line']=='Znfe'){ ?>
-                                        <?=$rows01['n_znfe']?>
-                                </td>
-                                    <?php }?>
-                            </td>
-                            <td colspan="2" align="left" style="border-right:1px solid; ">
-                                <?php if($rows01['n_line']=='ฟอสเฟส'){ ?>
-                                    <font size="+1">☑</font> ฟอสเฟส
+                                &nbsp;
+
+                                <?php if($rows01['n_line']=='PP'){ ?>
+                                    <font size="+1">☑</font> PP
                                 <?php }else{ ?>
-                                    <font size="+1">☐</font> ฟอสเฟส
+                                    <font size="+1">☐</font> PP
                                 <?php }?>
                             </td>
-                             
+                            <td>Rack</td>
+                            <td style="border-bottom:1px dotted;">
+                                <?=$rows01['n_rack']?>&nbsp;ตัว
+                            </td>
+                            <td>Barel</td>
+                            <td colspan="2" style="border-bottom:1px dotted;border-right:1px solid;">
+                                <?=$rows01['n_barel']?>&nbsp;KG
+                            </td>
                         </tr>
                         <tr>
                             <td colspan="3" align="left" style="border-left:1px solid;">&nbsp;Baking</td>
@@ -243,36 +237,39 @@
                                     <font size="+1">☐</font> 
                                 <?php }?>
                             </font> ความปลอดภัยผลิตภัณฑ์ (ถ้ามี)</td>
-                            <td colspan="6" style="border-bottom:1px dotted;border-right:1px solid; "><?=$rows01['n_product_safety']?></td>
+                            <td colspan="6" style="border-bottom:1px dotted;"><?=$rows01['n_product_safety']?></td>
+                            <td style="border-right:1px solid; "></td>
                         </tr>
                         <tr>
                             <td colspan="3" align="left" style="border-left:1px solid;">&nbsp;Salt Spray</td>
-                            <td align="left">สนิมขาว<td style="border-bottom:1px dotted;"><?=$rows01['n_white_rust']?></td></td>
-                            <td>&nbsp;สนิมแดง<td colspan="3" style="border-bottom:1px dotted;"><?=$rows01['n_red_rust']?></td></td>
+                            <td align="left"><font size="2px">สนิมขาว</font><td colspan="2" style="border-bottom:1px dotted;"><?=$rows01['n_white_rust']?></td></td>
+                            <td colspan="2">&nbsp;<font size="2px">สนิมแดง</font><td colspan="3" style="border-bottom:1px dotted;"><?=$rows01['n_red_rust']?></td></td>
                             <td colspan="2">
                                 <?php if($rows01['n_customeritem']=='ลูกค้าต้องการ'){ ?>
                                     <font size="+1">☑</font> ลูกค้าต้องการ
                                 <?php }else{ ?>
                                     <font size="+1">☐</font> ลูกค้าต้องการ
                                 <?php }?>
-                                <td style="border-bottom:1px dotted;">
-                                    <?php if($rows01['n_customeritem']=='ลูกค้าต้องการ'){ ?>
-                                        <?=$rows01['n_customeritem']?>
-                                </td>
-                                    <?php }?>
                             </td>
-                            <td colspan="2">
-                            <?php if($rows01['n_customeritem']=='ลูกค้าไม่ต้องการ'){ ?>
+                            <td colspan="1" style="border-bottom:1px dotted;">
+                                <?php if($rows01['n_customeritem']=='ลูกค้าต้องการ'){ ?>
+                                    <?=$rows01['n_customeritem']?>
+                                <?php }?>
+                            </td>
+                            <td></td>
+                            <td colspan="1" align="left">
+                                <?php if($rows01['n_customeritem']=='ลูกค้าไม่ต้องการ'){ ?>
                                     <font size="+1">☑</font> ลูกค้าไม่ต้องการ
                                 <?php }else{ ?>
                                     <font size="+1">☐</font> ลูกค้าไม่ต้องการ
                                 <?php }?>
                             </td>
-                            <td colspan="3" style="border-right:1px solid;"></td>
+                            <td></td>
+                            <td style="border-right:1px solid;"></td>
                         </tr>
                         <tr>
                             <td colspan="3" align="left" style="border-left:1px solid;">&nbsp;กลุ่มผลิตภัณฑ์</td>
-                            <td colspan="12" align="left">
+                            <td colspan="10" align="left">
                                 <?php if($rows01['n_producgroup']=='Screw_Bolt'){ ?>
                                     <font size="+1">☑</font> Screw/Bolt
                                 <?php }else{ ?>
@@ -314,18 +311,20 @@
                                 <?php }else{ ?>
                                     &emsp;<font size="+1">☐</font> Stud
                                 <?php } ?>
-
+                            </td>
+                            <td align="left">
                                 <?php if($rows01['n_producgroup']=='อื่นๆ'){ ?>
                                     &emsp;<font size="+1">☑</font> อื่นๆ
                                 <?php }else{ ?>
                                     &emsp;<font size="+1">☐</font> อื่นๆ
                                 <?php } ?>
                             </td>
-                            <td style="border-bottom:1px dotted;border-right:1px solid;">
+                            <td colspan="3" style="border-bottom:1px dotted;">
                                 <?php if($rows01['n_producgroup']=='อื่นๆ'){ ?>
                                     <?=$rows01['n_producgroupother']?>
                             </td>
                                 <?php } ?>
+                            <td style="border-right:1px solid;"></td>
                         </tr>
                         <tr>
                             <td colspan="3" align="left" style="border-left:1px solid;">&nbsp;ยานยนต์</td>
@@ -362,54 +361,58 @@
                         <tr>
                             <td colspan="3" align="left" style="border-left:1px solid;">&nbsp;น้ำหนัก/ตัว</td>
                             <td colspan="2" style="border-bottom:1px dotted;"><?=$rows01['n_weight']?></td>
-                            <td colspan="3" align="right">&nbsp;Grum&emsp;Model Life</td>
-                            <td style="border-bottom:1px dotted;"><?=$rows01['n_madel']?></td>
+                            <td align="center">Grum</td>
+                            <td colspan="2" align="center">Model Life</td>
+                            <td colspan="2" style="border-bottom:1px dotted;"><?=$rows01['n_madel']?></td>
                             <td align="left" colspan="2">ปี&nbsp;จุดระวังพิเศษ</td>
-                            <td colspan="6" style="border-bottom:1px dotted;border-right:1px solid;"><?=$rows01['n_remark']?></td>
+                            <td colspan="3" style="border-bottom:1px dotted;"><?=$rows01['n_remark']?></td>
+                            <td></td>
+                            <td></td>
+                            <td style="border-right:1px solid;"></td>
                         </tr>
                         <tr>
                             <td colspan="3" align="left" style="border-left:1px solid;">&nbsp;Volume</td>
                             <td colspan="2" align="left">
                                 <?php if($rows01['n_volume']=='ลูกค้าไม่แจ้ง'){ ?>
-                                    <font size="+1">☑</font>&emsp;ลูกค้าไม่แจ้ง
+                                    <font size="+1">☑</font>&nbsp;ลูกค้าไม่แจ้ง
                                 <?php }else{ ?>
-                                    <font size="+1">☐</font>&emsp;ลูกค้าไม่แจ้ง
+                                    <font size="+1">☐</font>&nbsp;ลูกค้าไม่แจ้ง
                                 <?php } ?>
                             </td>
                             <td colspan="2">ปริมาณ/เดือน</td>
                             <td colspan="2"style="border-bottom:1px dotted;">
-                                <?php if($rows01['n_volume']=='ลูกค้าแจ้ง'){ ?>
+                                
                                     <?=$rows01['n_amount_mk']?>
-                                <?php } ?>
+                                
                             </td>
                             <td>กก.</td>
                             <td colspan="2">ปริมาณ/ปี</td>
                             <td colspan="2"style="border-bottom:1px dotted;">
-                                <?php if($rows01['n_volume']=='ลูกค้าแจ้ง'){ ?>
+                                
                                     <?=$rows01['n_amount_yk']?>
-                                <?php } ?>
+                                
                             </td>
                             <td align="left">กก.</td>
-                            <td colspan="2" align="left" style="border-right:1px solid;"></td>
+                            <td colspan="3" align="left" style="border-right:1px solid;"></td>
                         </tr>
                         <tr>
                             <td colspan="3" align="left" style="border-left:1px solid;"></td>
                             <td colspan="2" align="left"></td>
                             <td colspan="2">ปริมาณ/เดือน</td>
                             <td colspan="2"style="border-bottom:1px dotted;">
-                                <?php if($rows01['n_volume']=='ลูกค้าแจ้ง'){ ?>
+                                
                                     <?=$rows01['n_amount_mitem']?>
-                                <?php } ?>
+                                
                             </td>
                             <td>ชิ้น</td>
                             <td colspan="2">ปริมาณ/ปี</td>
                             <td colspan="2"style="border-bottom:1px dotted;">
-                                <?php if($rows01['n_volume']=='ลูกค้าแจ้ง'){ ?>
+                                
                                     <?=$rows01['n_amount_yitem']?>
-                                <?php } ?>
+                                
                             </td>
                             <td align="left">ชิ้น</td>
-                            <td colspan="2" align="left" style="border-right:1px solid;"></td>
+                            <td colspan="3" align="left" style="border-right:1px solid;"></td>
                         </tr>
 
                         <table width="100%" border="0" cellpadding="5px">
@@ -444,21 +447,21 @@
                                     <?php } ?>
                                 </td>
                                 <td align="left">
-                                    <?php if($rows01['n_thickness']=='ไม่กำหนดจุดวัด'){ ?>
-                                         &nbsp;<font size="+1">☑</font> ไม่กำหนดจุดวัด
+                                    <?php if($rows01['n_thickness']=='ลูกค้ากำหนด'){ ?>
+                                         &nbsp;<font size="+1">☑</font> ลูกค้ากำหนด
                                     <?php }else{ ?>
-                                         &nbsp;<font size="+1">☐</font> ไม่กำหนดจุดวัด
+                                         &nbsp;<font size="+1">☐</font> ลูกค้ากำหนด
                                     <?php } ?>
                                 </td>
                                 <td align="left">
-                                    <?php if($rows01['n_thickness']=='กำหนดจุดวัดระบุ'){ ?>
-                                         &nbsp;<font size="+1">☑</font> กำหนดจุดวัดระบุ
+                                    <?php if($rows01['n_thickness']=='SPZกำหนด'){ ?>
+                                         &nbsp;<font size="+1">☑</font> SPZ กำหนด
                                     <?php }else{ ?>
-                                         &nbsp;<font size="+1">☐</font> กำหนดจุดวัดระบุ
+                                         &nbsp;<font size="+1">☐</font> SPZ กำหนด
                                     <?php } ?>
                                 </td>
                                 <td width="15%" style="border-bottom:1px dotted;">
-                                    <?php if($rows01['n_thickness']=='กำหนดจุดวัดระบุ'){ ?>
+                                    <?php if($rows01['n_thickness']=='SPZกำหนด'){ ?>
                                         <?=$rows01['n_thickness_other']?>
                                     <?php } ?>
                                 </td>
@@ -495,9 +498,9 @@
                                 <td align="left">&nbsp;<font size="+1">☐</font> ชิ้น</td>
                                 <td style="border-bottom:1px dotted;"></td>
                                 <td align="left">&nbsp;<font size="+1">☐</font> กก.</td>
-                                <td> ภาชนะบรรจุ</td>
+                                <td align="left">ภาชนะบรรจุ</td>
                                 <td style="border-bottom:1px dotted;"></td>
-                                <td> Box / ถุง / กล่อง</td>
+                                <td>Box / ถุง / กล่อง</td>
                                 <td style="border-right:1px solid;"></td>
                             </tr>
                             <tr>
@@ -511,10 +514,9 @@
                                 </td>
                                 <td style="border-bottom:1px dotted;">
                                     <?php if($rows01['n_box']=='ใส่ Box ลูกค้า'){ ?>
-                                        <?=$rows01['n_boxk']?>
+                                        <?=$rows01['n_boxk']?>&nbsp;กก./ชิ้น
                                     <?php } ?>
                                 </td>
-                                <td align="center">กก./ชิ้น</td>
                                 <td align="center">
                                     <?php if($rows01['n_box']=='ใส่ถุงละ'){ ?>
                                         &nbsp;<font size="+1">☑</font> ใส่ถุงละ
@@ -524,17 +526,26 @@
                                 </td>
                                 <td style="border-bottom:1px dotted;">
                                     <?php if($rows01['n_box']=='ใส่ถุงละ'){ ?>
-                                        <?=$rows01['n_itembag']?>
+                                        <?=$rows01['n_itembag']?>&nbsp;ชิ้น
                                     <?php } ?>
                                 </td>
-                                <td align="center">ชิ้น</td>
-                                <td colspan="2" style="border-right:1px solid;" align="left">
-                                    <?php if($rows01['n_box']=='บรรจุตามมาตรฐานของลูกค้า'){ ?>
-                                        &nbsp;<font size="+1">☑</font> มาตรฐานของลูกค้า
+                                <td colspan="2" align="center">
+                                    <?php if($rows01['n_box']=='customer_ref'){ ?>
+                                        &nbsp;<font size="+1">☑</font> Cus.REF
                                     <?php }else{ ?>
-                                        &nbsp;<font size="+1">☐</font> มาตรฐานของลูกค้า
+                                        &nbsp;<font size="+1">☐</font> Cus.REF
+                                    <?php } ?>
+                                    &emsp;
+                                    <?php if($rows01['n_box']=='spz_ref'){ ?>
+                                        &nbsp;<font size="+1">☑</font> SPZ.REF
+                                    <?php }else{ ?>
+                                        &nbsp;<font size="+1">☐</font> SPZ.REF
                                     <?php } ?>
                                 </td>
+                                <td style="border-bottom:1px dotted;">
+                                    <?=$rows01['ref']?>
+                                </td>
+                                <td style="border-right:1px solid;"></td>
                             </tr>
                             <tr>
                                 <td width="12%" align="left" style="border-left:1px solid;">&nbsp;การรับ-ส่งสินค้า</td>
@@ -553,17 +564,10 @@
                                     <?php } ?>
                                 </td>
                                 <td align="left">
-                                    <?php if($rows01['n_inout_procuct']=='การตลาด'){ ?>
-                                        &nbsp;<font size="+1">☑</font> การตลาด
-                                    <?php }else{ ?>
-                                        &nbsp;<font size="+1">☐</font> การตลาด
-                                    <?php } ?>
-                                </td>
-                                <td align="left">
                                     <?php if($rows01['n_inout_procuct']=='อื่นๆ'){ ?>
-                                        &nbsp;<font size="+1">☑</font> อื่นๆ
+                                        &nbsp;<font size="+1">☑</font> หมายเหตุ
                                     <?php }else{ ?>
-                                        &nbsp;<font size="+1">☐</font> อื่นๆ
+                                        &nbsp;<font size="+1">☐</font> หมายเหตุ
                                     <?php } ?>
                                 </td>
                                 <td align="left" style="border-bottom:1px dotted;">
@@ -571,6 +575,7 @@
                                         <?=$rows01['n_inout_other']?>
                                     <?php } ?>
                                 </td>
+                                <td style="border-bottom:1px dotted;"></td>
                                 <td style="border-bottom:1px dotted;"></td>
                                 <td style="border-bottom:1px dotted;"></td>
                                 <td style="border-right:1px solid;"></td>
@@ -599,7 +604,7 @@
                                     <?php } ?>
                                 </td>
                                 <td style="border-bottom:1px dotted;">
-                                    <?php if($rows01['n_open_fly']=='คิดเหมา'){ ?>
+                                    <?php if($rows01['n_open_fly']=='คิดเงิน' || $rows01['n_open_fly']=='คิดเหมา'){ ?>
                                         <?=$rows01['n_open_flythink']?>
                                     <?php } ?>
                                 </td>
@@ -631,6 +636,7 @@
                                 <td></td>
                                 <td style="border-right:1px solid;"></td>
                             </tr>
+                            <tr><td colspan="9" style="border-left:1px solid;border-right:1px solid;"></td></tr>
                             <tr>
                                 <td colspan="2" style="border-left:1px solid;" align="left">
                                     <?php if($rows01['n_approve_data']=='อนุมัติเพิ่มในฐานระบบ'){ ?>
@@ -654,6 +660,7 @@
                                 <td></td>
                                 <td style="border-right:1px solid;"></td>
                             </tr>
+                            <tr><td colspan="9" style="border-left:1px solid;border-right:1px solid;"></td></tr>
                             <tr>
                                 <td colspan="2" style="border-left:1px solid;" align="left">&nbsp;อ้างอิงใบเสนอราคาเลขที่</td>
                                 <td colspan="2" style="border-bottom:1px dotted;">
@@ -742,6 +749,7 @@
                             <tr><td>&nbsp;</td></tr>
 
                             <table width="100%" border="0" align="center">
+                                <tr><td>&nbsp;</td></tr>
                                 <tr>
                                     <td width="10%" align="left">&nbsp; ผู้ให้ข้อมูล</td>
                                     <td style="border-bottom:1px dotted;"></td>
@@ -763,6 +771,23 @@
                             </table>
                         </table>
                     </table>
+                </table>
+                <br>
+                <table width="100%">
+                    <tr>
+                        <td align="left">
+                            <font size="2px">
+                                วันที่ <?=$date?>
+                                &emsp;
+                                เวลา <?=$time?>
+                            </font>
+                        </td>
+                        <td align="right">
+                            <font size="2px">
+                                ( Doc No.123456-777 )
+                            </font>
+                        </td>
+                    </tr>
                 </table>
             </div>   
         </div>

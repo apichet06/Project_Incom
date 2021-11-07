@@ -85,7 +85,8 @@ $("#insert_update").submit(function (e) {
         });
         $("#add_edit").modal("hide");
         setTimeout(() => {
-            window.location.href ="new_order_print.php?n_number=" +  response.n_number
+          window.location.reload();
+            // window.location.href ="new_order_print.php?n_number=" +  response.n_number
         }, 1000);
     } else if (response.data == 0) {
         Swal.fire({

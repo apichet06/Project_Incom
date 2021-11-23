@@ -55,12 +55,12 @@ $("#pa_id").change(function (e) {
       $('#pa_name').val(data.pa_name)
       $('#pa_spec').val(data.pa_spec)
       $('#pa_color').val(data.pa_color)
-      $('#pa_thickness').val(data.pa_thickness)
+      $('#pa_thickness').val(data.pa_thickness) 
+      $('input[name^="n_baking"][value="'+data.baking+'"').prop('checked',true);
       if (data.pa_img !== null) {
         $('#pa_img').attr("src", "../part/image/" + data.pa_img)
       } else {
-        $('#pa_img').attr("src", "../img/no-image.jpg")
-
+        $('#pa_img').attr("src", "../img/no-image.jpg") 
       }
 
     },
@@ -77,38 +77,38 @@ $("#insert_update").submit(function (e) {
     data: $(this).serialize() + "&insert_update=" + insert_update,
     dataType: "json",
     success: function (response) {
-     if (response.data == 1) {
+      if (response.data == 1) {
         Swal.fire({
-            icon: "success",
-            title: response.alert,
-            showConfirmButton: false,
+          icon: "success",
+          title: response.alert,
+          showConfirmButton: false,
         });
         $("#add_edit").modal("hide");
         setTimeout(() => {
           window.location.reload();
-            // window.location.href ="new_order_print.php?n_number=" +  response.n_number
+          // window.location.href ="new_order_print.php?n_number=" +  response.n_number
         }, 1000);
-    } else if (response.data == 0) {
+      } else if (response.data == 0) {
         Swal.fire({
-            icon: "error",
-            title: response.alert,
+          icon: "error",
+          title: response.alert,
         });
-    } else if (response.data == 3) {
+      } else if (response.data == 3) {
 
         Swal.fire({
-            icon: "error",
-            title: response.alert,
-            showDenyButton: false,
-            showCancelButton: false,
-            confirmButtonText: 'ตลลง',
+          icon: "error",
+          title: response.alert,
+          showDenyButton: false,
+          showCancelButton: false,
+          confirmButtonText: 'ตลลง',
         }).then((result) => {
-          
-            if (result.isConfirmed) {
-                window.location.reload();
-            }
+
+          if (result.isConfirmed) {
+            window.location.reload();
+          }
         })
 
-    }
+      }
     }
   });
 

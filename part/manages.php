@@ -3,16 +3,22 @@ session_start();
 require_once '../conndb/conn.php';
  
 if($_SESSION['u_id']){
-
-    $pa_id      = @$_POST['pa_id'];
-    $pa_no      = @$_POST['pa_no'];
-    $pa_name    = @$_POST['pa_name'];
-    $pa_spec    = @$_POST['pa_spec'];
-    $pa_color   = @$_POST['pa_color'];
-    $pa_thickness   = @$_POST['pa_thickness']; 
-    $pa_date        = date("y-m-d");
-    $insert_update  = @$_POST['insert_update'];
-    $u_id           = @$_SESSION['u_id'];
+    	
+    $pa_id              = @$_POST['pa_id'];
+    $pa_no              = @$_POST['pa_no'];
+    $pa_name            = @$_POST['pa_name'];
+    $pa_spec            = @$_POST['pa_spec'];
+    $color_id           = @$_POST['color_id'];
+    $thickness_id       = @$_POST['thickness_id'];
+    $production_line_id = @$_POST['production_line_id'];
+    $special_control_id = @$_POST['special_control_id'];
+    $type_id            = @$_POST['type_id'];
+    $baking_id          = @$_POST['baking_id']; 
+    $pa_date            = date("y-m-d");
+    $u_id               = @$_SESSION['u_id'];
+ 
+    $insert_update      = @$_POST['insert_update'];
+    
 
     if($insert_update == "insert_update"){
         
@@ -39,9 +45,9 @@ if($_SESSION['u_id']){
         $alert = $already_have;
     }else{
     
-            $sql = mysqli_query($conn,"INSERT INTO part(pa_no,pa_name,pa_spec,pa_color,pa_thickness,pa_img,pa_date,u_upload)
+            $sql = mysqli_query($conn,"INSERT INTO part(pa_no,pa_name,pa_spec,color_id,thickness_id,production_line_id,special_control_id,type_id,baking_id,pa_img,pa_date,u_upload)
             VALUES
-            ('$pa_no','$pa_name','$pa_spec','$pa_color','$pa_thickness','$pa_img','$pa_date','$u_id')");
+            ('$pa_no','$pa_name','$pa_spec','$color_id','$thickness_id','$production_line_id','$special_control_id','$type_id','$baking_id','$pa_img','$pa_date','$u_id')");
 
         if($sql){
             $show  = 1;
@@ -67,8 +73,12 @@ if($_SESSION['u_id']){
                     pa_no='$pa_no'
                     ,pa_name='$pa_name'
                     ,pa_spec='$pa_spec'
-                    ,pa_color='$pa_color'
-                    ,pa_thickness='$pa_thickness'
+                    ,color_id='$color_id'
+                    ,thickness_id='$thickness_id'
+                    ,production_line_id='$production_line_id'
+                    ,special_control_id='$special_control_id'
+                    ,type_id='$type_id'
+                    ,baking_id='$baking_id'
                     ,pa_img='$pa_img'
                     ,u_upload = '$u_id'
                     Where pa_id = '$pa_id' ");
@@ -77,9 +87,13 @@ if($_SESSION['u_id']){
                     pa_no='$pa_no'
                     ,pa_name='$pa_name'
                     ,pa_spec='$pa_spec'
-                    ,pa_color='$pa_color'
-                    ,pa_thickness='$pa_thickness' 
-                    ,u_upload = '$u_id'
+                    ,color_id='$color_id'
+                    ,thickness_id='$thickness_id'
+                    ,production_line_id='$production_line_id'
+                    ,special_control_id='$special_control_id'
+                    ,type_id='$type_id'
+                    ,baking_id='$baking_id'
+                    ,u_upload ='$u_id'
                     Where pa_id = '$pa_id' ");
                 }
             

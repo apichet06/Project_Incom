@@ -165,7 +165,7 @@
                                                             </div>
                                                             <div class="col-md-6 ">
                                                                 <div class="row mb-0 ">
-                                                                    <label class="col-3 col-form-label">Space ชุบ</label>
+                                                                    <label class="col-3 col-form-label">Spec ชุบ</label>
                                                                     <div class="col-9">
                                                                         <input type="text" class="form-control-plaintext form-control-sm" id="pa_spec" name="pa_spec" placeholder="Space ชุบ" value="<?=$rs['pa_spec']?>">
                                                                     </div>
@@ -190,8 +190,8 @@
                                                             </div>
                                                             <div class="col-md-6 ">
                                                                 <div class="row mb-0 ">
-                                                                    <label class="col-2 col-form-label">Lot NO.</label>
-                                                                    <div class="col-10">
+                                                                    <label class="col-3 col-form-label">Lot NO.</label>
+                                                                    <div class="col-9">
                                                                         <input type="text" class="form-control form-control-sm" id="n_lot" name="n_lot" placeholder="Lot NO." value="<?=$rs['n_lot']?>">
                                                                     </div>
                                                                 </div>

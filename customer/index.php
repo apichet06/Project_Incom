@@ -55,7 +55,7 @@
                                     </div> 
                                 </div>
                                 <div class="card-body">
-                                    <table class="table table-striped text-secondary table-responsive-sm text-nowrap">
+                                    <table class="table table-striped text-secondary table-responsive-sm text-nowrap" id="data">
                                         <thead class="align-middle ">
                                             <tr>
                                                 <th>#</th>
@@ -190,6 +190,12 @@
             }
         });
     });
+
+    $(document).ready(function() {
+    $('#data').DataTable({
+        "pagingType": "full_numbers"
+    });
+} );
 </script>
 
 </body>

@@ -66,6 +66,7 @@ $("#pa_id").change(function (e) {
       $("#pa_spec").val(data.pa_spec);
       $("#pa_color").val(data.pa_color);
       $("#pa_thickness").val(data.pa_thickness);
+      $('input[name^="n_baking"][value="'+data.baking+'"').prop('checked',true);
       if (data.pa_img !== null) {
         $("#pa_img").attr("src", "../part/image/" + data.pa_img);
       } else {

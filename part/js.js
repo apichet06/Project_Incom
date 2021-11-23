@@ -7,9 +7,17 @@ $("#plus").click(function (e) {
     $("#pa_no").val("");
     $("#pa_name").val("");
     $("#pa_spec").val("");
-    $("#pa_color").val("");
-    $("#pa_thickness").val("");
+    $("#color_id").val("");
+    $("#thickness_id").val("");
     $("#pa_img").val("");
+
+    $("#production_line_id").val("");
+    $("#production_line_id").val("");
+    $("#type_id").val("");
+    $("#baking_id").val("");
+  
+     
+    
 });
 
 $(".edit").click(function (e) {
@@ -21,15 +29,23 @@ $(".edit").click(function (e) {
     var pa_no = $(this).data('pa_no');
     var pa_name = $(this).data('pa_name');
     var pa_spec = $(this).data('pa_spec');
-    var pa_color = $(this).data('pa_color');
-    var pa_thickness = $(this).data('pa_thickness');
+    var color_id = $(this).data('color_id');
+    var thickness_id = $(this).data('thickness_id');
+    var production_line_id = $(this).data('production_line_id');
+    var special_control_id = $(this).data('special_control_id');
+    var type_id = $(this).data('type_id');
+    var baking_id = $(this).data('baking_id');
 
     $("#pa_id").val(pa_id);
     $("#pa_no").val(pa_no);
     $("#pa_name").val(pa_name);
     $("#pa_spec").val(pa_spec);
-    $("#pa_color").val(pa_color);
-    $("#pa_thickness").val(pa_thickness);
+    $("#color_id").val(color_id);
+    $("#thickness_id").val(thickness_id);
+    $("#production_line_id").val(production_line_id);
+    $("#special_control_id").val(special_control_id);
+    $("#type_id").val(type_id);
+    $("#baking_id").val(baking_id);
  
 });
 
@@ -140,3 +156,10 @@ $("#insert_update").submit(function (e) {
         $('#imagemodal').modal('show');   
     });     
 });
+
+
+$(document).ready(function() {
+    $('#data').DataTable({
+        "pagingType": "full_numbers"
+    });
+} );
